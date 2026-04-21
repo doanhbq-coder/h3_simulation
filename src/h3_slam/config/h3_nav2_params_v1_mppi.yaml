@@ -137,7 +137,15 @@ controller_server:
       yaw_goal_tolerance: 0.2
     # DWB parameters
     FollowPath:
-      plugin: "nav2_mppi_controller::MPPIController" 
+      # plugin: "nav2_rotation_shim_controller::RotationShimController"
+      # primary_controller: "nav2_mppi_controller::MPPIController"
+      # angular_dist_threshold: 0.5 # 45 degrees in radians, robot will rotate in place if the angle to the goal is greater than this threshold
+      # forward_sampling_distance: 0.5 # Khoảng cách mà robot sẽ bắt đầu xoay về phía mục tiêu trước khi di chuyển về phía mục tiêu, giúp cải thiện khả năng định hướng của robot khi tiếp cận mục tiêu.
+      # rotate_to_heading_angular_vel: 0.05
+      # max_angular_accel: 0.05
+      # simulate_ahead_time: 1.0
+      # rotate_to_goal_heading: false
+      plugin: "nav2_mppi_controller::MPPIController"
       time_steps: 30 # Tăng time_steps để robot có thể đánh giá các đường đi tiềm năng trong một khoảng thời gian dài hơn, giúp cải thiện khả năng lập kế hoạch và tránh chướng ngại vật của robot, đặc biệt là trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
       model_dt: 0.05
       batch_size: 2000
@@ -153,6 +161,10 @@ controller_server:
       vx_min: 0.0 # Tăng vx_min để robot có thể lùi lại khi cần thiết, giúp cải thiện khả năng tránh chướng ngại vật và đạt được mục tiêu trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
       vy_max: 0.0 # Tăng vy_max để robot có thể di chuyển nhanh hơn sang hai bên khi cần thiết, giúp cải thiện khả năng tránh chướng ngại vật và đạt được mục tiêu trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
       wz_max: 1.0 # Tăng wz_max để robot có thể quay nhanh hơn khi cần thiết, giúp cải thiện khả năng tránh chướng ngại vật và đạt được mục tiêu trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
+      ax_max: 0.5    # Gia tốc tuyến tính tối đa (m/s²)
+      ax_min: -1.0   # Gia tốc tuyến tính tối thiểu (m/s²) - cho phép lùi
+      az_max: 2.0    # Gia tốc góc tối đa (rad/s²)
+      az_min: -2.0   # Gia tốc góc tối thiểu (rad/s²)
       motion_model: "DiffDrive"
       visualize: false
       critics: ["ConstraintCritic", "CostCritic", "GoalCritic", "GoalAngleCritic", "PathAlignCritic", "PathFollowCritic", "PathAngleCritic", "PreferForwardCritic"]
@@ -202,7 +214,7 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      footprint: "[ [-0.16, -0.13], [-0.16, 0.13], [0.16, 0.13], [0.16, -0.13] ]"
+      footprint: "[ [-0.42, -0.3], [-0.42, 0.3], [0.42, 0.3], [0.42, -0.3] ]"
       # robot_radius: 0.8
       plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
       inflation_layer:
