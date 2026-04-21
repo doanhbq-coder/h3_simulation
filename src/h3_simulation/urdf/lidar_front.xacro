@@ -28,15 +28,15 @@
     <gazebo reference="laser_frame_front">
         <material>Gazebo/Red</material>
 
-        <sensor name="laser" type="ray">
+        <sensor name="laser_front" type="ray">
             <pose> 0 0 0 0 0 0 </pose>
             <visualize>true</visualize>
-            <update_rate>10</update_rate>
+            <update_rate>20</update_rate>
             <ray>
                 <scan>
                     <horizontal>
-                        <samples>360</samples>
-                        <resolution>0.35</resolution>
+                        <samples>1080</samples> <!--Tăng số tia quét-->
+                        <resolution>1</resolution> <!--Tránh nội suy lệch-->
                         <min_angle>-1.6</min_angle>
                         <max_angle>3.1</max_angle>
                     </horizontal>
@@ -47,9 +47,9 @@
                 </range>
             </ray>
 
-            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
+            <plugin name="laser_front_controller" filename="libgazebo_ros_ray_sensor.so">
                 <ros>
-                    <argument>~/out:=scan</argument>
+                    <argument>~/out:=scan_front</argument>
                 </ros>
                 <output_type>sensor_msgs/LaserScan</output_type>
                 <frame_name>laser_frame_front</frame_name>

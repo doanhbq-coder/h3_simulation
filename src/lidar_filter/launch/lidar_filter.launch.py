@@ -13,14 +13,25 @@ def generate_launch_description():
 
     return LaunchDescription([
         Node(
-            package='laser_filters',
-            executable='scan_to_scan_filter_chain',
-            name='scan_filterer',   # 🔥 phải trùng YAML
-            parameters=[config],
-            remappings=[
-                ('scan', '/scan'),
-                ('scan_filtered', '/scan_filtered')
+            package='lidar_filter',
+            executable='lidar_merger',
+            name='lidar_merger',
+            output='screen'
+        ),
+
+        Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='base_to_laser_tf',
+            arguments=[
+                '0', '0', '0.2',   # x y z (vị trí lidar so với base_link)
+                '0', '0', '0',     # roll pitch yaw
+                'base_link',
+                'laser_frame'
             ],
             output='screen'
-        )
+        ),
+        # Note: TF transforms are now published by robot_state_publisher from URDF
+        # laser_frame_front and laser_frame_rear are defined in the URDF
+        # This merger node creates a merged scan in laser_frame_front
     ])

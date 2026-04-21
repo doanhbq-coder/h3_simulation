@@ -5,9 +5,10 @@
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="doanhbq@pheniakaa-x.com">neo</maintainer>
-  <license>TODO: License declaration</license>
-
-  <test_depend>ament_copyright</test_depend>
+  <license>Apache-2.0</license>
+  <depend>sensor_msgs</depend>
+  <depend>rclpy</depend>
+  <depend>laser_geometry</depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>
   <test_depend>python3-pytest</test_depend>

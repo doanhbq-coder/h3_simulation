@@ -1,0 +1,137 @@
+panels:
+  - Class: rviz_common/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Grid1
+        - /LaserScan1
+        - /MarkerArray1
+        - /Pose1
+      Splitter Ratio: 0.5
+    Tree Height: 487
+  - Class: rviz_common/Selection
+    Name: Selection
+  - Class: rviz_common/Tool Properties
+    Help Height: 78
+    Name: Tool Properties
+    Property Tree Widget:
+      Expanded:
+        - /2D Goal Pose1
+      Splitter Ratio: 0.588679
+    Tree Height: 487
+  - Class: rviz_common/Views
+    Name: Views
+    Property Tree Widget:
+      Expanded:
+        - /Current View1
+      Splitter Ratio: 0.5
+    Tree Height: 487
+  - Class: rviz_common/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: LaserScan
+visualization_manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: Grid
+    - Alpha: 1
+      Class: rviz_default_plugins/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Name: LaserScan
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.1
+      Style: Points
+      Topic: /scan
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: LaserScan
+    - Alpha: 1
+      Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: Elevator Visualization
+      Namespaces:
+        ""
+      Queue Size: 100
+      Show Axes: false
+      Show Descriptions: false
+      Show Namespaces: false
+      Topic: /elevator_visualization
+      Value: MarkerArray
+    - Alpha: 1
+      Class: rviz_default_plugins/Pose
+      Axes Length: 0.3
+      Axes Radius: 0.03
+      Class: rviz_default_plugins/Pose
+      Color: 85; 255; 255
+      Enabled: true
+      Name: Goal Pose
+      Shaft Length: 0.1
+      Shaft Radius: 0.05
+      Shape: Arrow
+      Topic: /goal_pose
+      Value: Pose
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: base_link
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+    - Class: rviz_default_plugins/2D Nav Goal
+      Single Goal: true
+      Topic: /goal_pose
+    - Class: rviz_default_plugins/2D Pose Estimate
+      Topic: /initialpose
+  Value: Visualization Manager
+  Views:
+    - Class: rviz_default_plugins/Orbit
+      Angular Diameter: 180
+      Distance: 10
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.06
+        Stereo Focal Distance: 1
+        Stereo Rendering: false
+        Swap Stereo Eyes: false
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.959931
+      Roll: 0
+      Yaw: 0
+      Zoom: 1
+      Value: Current View

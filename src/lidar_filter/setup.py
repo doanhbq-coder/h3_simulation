@@ -28,6 +28,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'lidar_merger = lidar_filter.lidar_merger:main',
         ],
     },
 )
