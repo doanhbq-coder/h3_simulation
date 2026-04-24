@@ -156,7 +156,7 @@ controller_server:
       transform_tolerance: 0.2 
       vx_std: 0.2 # Độ lệch chuẩn cho tốc độ tuyến tính theo trục x, giúp robot đánh giá nhiều đường cong tiềm năng hơn, cải thiện khả năng lập kế hoạch và tránh chướng ngại vật của robot, đặc biệt là trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
       vy_std: 0.0
-      wz_std: 0.3 
+      wz_std: 0.6 
       vx_max: 0.5
       vx_min: -0.2
       vy_max: 0.0 

@@ -15,7 +15,7 @@ def generate_launch_description():
     )
 
     package_dir = get_package_share_directory('h3_slam')
-    params_file = os.path.join(package_dir, 'config', 'h3_nav2_params_v1_dwb.yaml')
+    params_file = os.path.join(package_dir, 'config', 'h3_nav2_params_v3_mppi.yaml')
     rviz_config = os.path.join(package_dir, 'rviz', 'nav2_default_view.rviz')
 
     # PLANNER

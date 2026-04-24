@@ -140,26 +140,26 @@ controller_server:
     FollowPath:
       # plugin: "nav2_rotation_shim_controller::RotationShimController"
       # primary_controller: "dwb_core::DWBLocalPlanner"
-      # angular_dist_threshold: 0.05 # 45 degrees in radians, robot will rotate in place if the angle to the goal is greater than this threshold
-      # forward_sampling_distance: 0.5 # Khoảng cách mà robot sẽ bắt đầu xoay về phía mục tiêu trước khi di chuyển về phía mục tiêu, giúp cải thiện khả năng định hướng của robot khi tiếp cận mục tiêu.
-      # rotate_to_heading_angular_vel: 1.2
+      # angular_dist_threshold: 0.5
+      # forward_sampling_distance: 0.5
+      # angular_disengage_threshold: 0.3925
+      # rotate_to_heading_angular_vel: 1.8
       # max_angular_accel: 3.2
       # simulate_ahead_time: 1.0
-      # rotate_to_goal_heading: true # Nếu true, robot sẽ xoay về phía mục tiêu trước khi di chuyển, giúp cải thiện khả năng định hướng của robot khi tiếp cận mục tiêu.
-      # DWB parameters used after rotation alignment
+      # rotate_to_goal_heading: false
       plugin: "dwb_core::DWBLocalPlanner"
       debug_trajectory_details: True
       min_vel_x: -0.2
       min_vel_y: 0.0
       max_vel_x: 0.5 #0.5
       max_vel_y: 0.0
-      max_vel_theta: 0.5
+      max_vel_theta: 2.0
       min_speed_xy: 0.0
       max_speed_xy: 0.5 #0.5
       min_speed_theta: 0.0
       # Add high threshold velocity for turtlebot 3 issue.
       # https://github.com/ROBOTIS-GIT/turtlebot3_simulations/issues/75
-      acc_lim_x: 0.2 #2.5 # Tăng acc_lim_x để robot có thể tăng tốc nhanh hơn khi bắt đầu di chuyển, giúp cải thiện khả năng phản ứng của robot khi tiếp cận mục tiêu.
+      acc_lim_x: 1.5 #2.5 Tăng acc_lim_x để robot có thể tăng tốc nhanh hơn khi bắt đầu di chuyển, giúp cải thiện khả năng phản ứng của robot khi tiếp cận mục tiêu.
       acc_lim_y: 0.0
       acc_lim_theta: 3.0
       decel_lim_x: -2.0 #-2.5
@@ -200,8 +200,8 @@ local_costmap:
       width: 3 # kich thuoc costmap, khong phai kich thuoc robot
       height: 3 # kich thuoc costmap, khong phai kich thuoc robot
       resolution: 0.03 # do phan giai cua costmap, nho hon thi costmap se chi tiet hon, nhung se ton tai nhieu chi phi tinh toan hon
-      # footprint: "[ [-0.16, -0.13], [-0.16, 0.13], [0.16, 0.13], [0.16, -0.13] ]"
-      robot_radius: 0.5 # radius set and used, so no footprint points
+      footprint: "[ [-0.42, -0.3], [-0.42, 0.3], [0.42, 0.3], [0.42, -0.3] ]"
+      # robot_radius: 0.5 
       plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
