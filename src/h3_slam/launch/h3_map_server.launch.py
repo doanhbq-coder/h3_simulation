@@ -16,7 +16,7 @@ def generate_launch_description():
 
     map_yaml_arg = DeclareLaunchArgument(
         'map',
-        default_value=os.path.join(get_package_share_directory('h3_slam'), 'maps', 'warehouse.yaml'),
+        default_value=os.path.join(get_package_share_directory('h3_slam'), 'maps', 'elevator.yaml'),
         description='Full path to the YAML map file to load'
     )
 

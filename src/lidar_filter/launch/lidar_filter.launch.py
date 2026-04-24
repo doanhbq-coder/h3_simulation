@@ -25,7 +25,7 @@ def generate_launch_description():
             name='base_to_laser_tf',
             arguments=[
                 '0', '0', '0.2',   # x y z (vị trí lidar so với base_link)
-                '0', '0', '0',     # roll pitch yaw
+                '3.14159', '0', '0',     # roll pitch yaw
                 'base_link',
                 'laser_frame'
             ],

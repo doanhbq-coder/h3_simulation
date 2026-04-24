@@ -1,0 +1,22 @@
+<model name="dock">
+                <!-- x y z r p y-->
+                    <pose>-1.0 -0.35 0 1.57 0 1.57</pose>
+                    <static>true</static>
+                    <link name="body">
+                      <visual name="visual">
+                        <geometry>
+                          <mesh><uri>file://Dock.stl</uri>
+                          <scale>0.001 0.001 0.001</scale>
+                        </mesh>
+                        </geometry>
+                      </visual>
+                      <collision name="collision1">
+                                <geometry>
+                                  <mesh><uri>file://Dock.stl</uri>
+                                   <scale>0.001 0.001 0.001</scale>
+                                   </mesh>
+                                </geometry>
+                              </collision>
+
+                    </link>
+                  </model>
