@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1
 ARG ROS_DISTRO=humble
-FROM osrf/ros:${ROS_DISTRO}-desktop
+ARG ROS_BASE_IMAGE=osrf/ros
+ARG ROS_IMAGE_TAG=${ROS_DISTRO}-desktop
+FROM ${ROS_BASE_IMAGE}:${ROS_IMAGE_TAG}
 
 ENV DEBIAN_FRONTEND=noninteractive \
     ROS_DISTRO=${ROS_DISTRO} \
@@ -18,8 +20,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-${ROS_DISTRO}-joint-state-publisher \
     ros-${ROS_DISTRO}-rviz2 \
     ros-${ROS_DISTRO}-laser-geometry \
-    ros-${ROS_DISTRO}-gazebo-ros-pkgs \
-    ros-${ROS_DISTRO}-gazebo-ros \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /ws

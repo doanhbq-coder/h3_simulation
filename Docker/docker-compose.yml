@@ -1,19 +1,21 @@
-version: "3.8"
-
 services:
   h3_simulation:
+    platform: linux/arm64
     build:
       context: ..
       dockerfile: Docker/Dockerfile
       args:
         ROS_DISTRO: humble
+        ROS_BASE_IMAGE: arm64v8/ros
+        ROS_IMAGE_TAG: humble-ros-base
     image: h3_simulation:latest
     container_name: h3_simulation
     network_mode: host
     environment:
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1
-      - GAZEBO_PLUGIN_PATH=/opt/ros/${ROS_DISTRO}/lib
+      - ROS_DISTRO=humble
+      - GAZEBO_PLUGIN_PATH=/opt/ros/humble/lib
     volumes:
       - ../src:/ws/src:rw
       - /tmp/.X11-unix:/tmp/.X11-unix

@@ -43,8 +43,25 @@ Start the container:
 
 ```bash
 xhost +local:root
-docker-compose -f Docker/docker-compose.yml up -d --remove-orphans
+docker compose -f Docker/docker-compose.yml up -d --remove-orphans
 ```
+
+If you are running on an ARM board like RK3588, the compose file now sets `platform: linux/arm64` and passes ARM-specific build args so Docker uses `arm64v8/ros:humble-ros-base` instead of the default x86 image.
+
+## ARM64 Limitations
+
+**Gazebo is not supported on ARM64** for ROS Humble. The following packages are not available in the ARM64 ROS repositories:
+
+- `ros-humble-gazebo-ros-pkgs`
+- `ros-humble-gazebo-ros`
+
+If you need Gazebo simulation on ARM64, consider:
+
+1. Using a different simulation framework (like Webots or Ignition Gazebo with native ARM64 support)
+2. Running Gazebo on an x86 host and connecting via ROS network
+3. Cross-compiling for x86 and running in emulation
+
+The Docker setup will work for all other ROS 2 functionality on ARM64.
 
 If `install/setup.bash` is missing, the container will build the workspace automatically on first start.
 
