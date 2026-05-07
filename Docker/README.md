@@ -14,6 +14,12 @@ From the repository root:
 
 ```bash
 cd /path/to/h3_simulation
+docker compose -f Docker/docker-compose.yml build
+```
+
+If your system still uses legacy `docker-compose`, the old command is:
+
+```bash
 docker-compose -f Docker/docker-compose.yml build
 ```
 
@@ -25,10 +31,11 @@ docker build --build-arg ROS_DISTRO=humble -t h3_simulation:latest -f Docker/Doc
 
 ## Run with local mounts
 
-The Compose file mounts local source and optional data into the container:
+The Compose file mounts your local `src` directory into the container:
 
-- `./src` → `/ws/src`
-- `${LOCAL_DATA_DIR:-./data}` → `/ws/data`
+- `../src` → `/ws/src`
+
+This ensures your local code changes are immediately visible inside the container.
 
 It also uses host networking and X11 for GUI apps like `gazebo`.
 
@@ -36,10 +43,20 @@ Start the container:
 
 ```bash
 xhost +local:root
-LOCAL_DATA_DIR=/path/to/local/data docker-compose -f Docker/docker-compose.yml up -d
+docker-compose -f Docker/docker-compose.yml up -d --remove-orphans
 ```
 
-If you do not set `LOCAL_DATA_DIR`, the default host folder `./data` is mounted to `/ws/data`.
+If `install/setup.bash` is missing, the container will build the workspace automatically on first start.
+
+If your workspace code changes later, rebuild inside the container:
+
+```bash
+docker exec -it h3_simulation bash
+cd /ws
+source /opt/ros/humble/setup.bash
+colcon build --symlink-install --parallel-workers 2
+source /ws/install/setup.bash
+```
 
 ## Run
 
