@@ -1,0 +1,67 @@
+<sdf version="1.6">
+  <world name="default">
+
+    <!-- Ground -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Sphere 1 -->
+    <model name="sphere1">
+      <pose>-2 0 0.5 0 0 0</pose>
+      <link name="link">
+        <inertial>
+          <mass>1.0</mass>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <sphere><radius>0.3</radius></sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <sphere><radius>0.3</radius></sphere>
+          </geometry>
+        </visual>
+      </link>
+
+      <!-- Plugin để nhận cmd_vel -->
+      <plugin name="move" filename="libgazebo_ros_planar_move.so">
+        <ros>
+          <namespace>/sphere1</namespace>
+        </ros>
+      </plugin>
+    </model>
+
+    <!-- Sphere 2 -->
+    <model name="sphere2">
+      <pose>2 0 0.5 0 0 0</pose>
+      <link name="link">
+        <inertial>
+          <mass>1.0</mass>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <sphere><radius>0.3</radius></sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <sphere><radius>0.3</radius></sphere>
+          </geometry>
+        </visual>
+      </link>
+
+      <plugin name="move" filename="libgazebo_ros_planar_move.so">
+        <ros>
+          <namespace>/sphere2</namespace>
+        </ros>
+      </plugin>
+    </model>
+
+  </world>
+</sdf>

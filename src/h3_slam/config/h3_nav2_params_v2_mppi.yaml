@@ -140,11 +140,11 @@ controller_server:
       plugin: "nav2_rotation_shim_controller::RotationShimController"
       primary_controller: "nav2_mppi_controller::MPPIController"
       angular_dist_threshold: 0.01
-      forward_sampling_distance: 0.1
+      forward_sampling_distance: 0.2
       rotate_to_heading_angular_vel: 1.8
       max_angular_accel: 2.0
       simulate_ahead_time: 1.0
-      rotate_to_goal_heading: true
+      rotate_to_goal_heading: false
       # plugin: "nav2_mppi_controller::MPPIController"
       time_steps: 30 # Tăng time_steps để robot có thể đánh giá các đường đi tiềm năng trong một khoảng thời gian dài hơn, giúp cải thiện khả năng lập kế hoạch và tránh chướng ngại vật của robot, đặc biệt là trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
       model_dt: 0.05
@@ -157,7 +157,7 @@ controller_server:
       vx_std: 0.2 
       vy_std: 0.0
       wz_std: 0.6 # Tăng wz_std để robot có thể đánh giá nhiều đường cong quay hơn, giúp cải thiện khả năng lập kế hoạch và tránh chướng ngại vật của robot, đặc biệt là trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
-      vx_max: 0.5
+      vx_max: 1.0
       vx_min: -0.5 # Tăng vx_min để robot có thể lùi lại khi cần thiết, giúp cải thiện khả năng tránh chướng ngại vật và đạt được mục tiêu trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
       vy_max: 0.0 # Tăng vy_max để robot có thể di chuyển nhanh hơn sang hai bên khi cần thiết, giúp cải thiện khả năng tránh chướng ngại vật và đạt được mục tiêu trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
       wz_max: 1.0 # Tăng wz_max để robot có thể quay nhanh hơn khi cần thiết, giúp cải thiện khả năng tránh chướng ngại vật và đạt được mục tiêu trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.

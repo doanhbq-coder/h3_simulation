@@ -4,7 +4,7 @@
     <joint name="laser_joint_front" type="fixed">
         <parent link="base_link"/>
         <child link="laser_frame_front"/>
-        <origin xyz="-0.1 0 0.175" rpy="0 0 0"/>    
+        <origin xyz="0.18 0.13 0.065" rpy="0 0 0"/>
     </joint>
 
     <link name="laser_frame_front">
@@ -37,7 +37,7 @@
                     <horizontal>
                         <samples>1080</samples> <!--Tăng số tia quét-->
                         <resolution>1</resolution> <!--Tránh nội suy lệch-->
-                        <min_angle>-3.14</min_angle>
+                        <min_angle>-1.57</min_angle>
                         <max_angle>3.14</max_angle>
                     </horizontal>
                 </scan>

@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  h3_simulation:
+    build:
+      context: ..
+      dockerfile: Docker/Dockerfile
+      args:
+        ROS_DISTRO: humble
+    image: h3_simulation:latest
+    container_name: h3_simulation
+    network_mode: host
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - GAZEBO_PLUGIN_PATH=/opt/ros/${ROS_DISTRO}/lib
+    volumes:
+      - ./src:/ws/src:cached
+      - ${LOCAL_DATA_DIR:-./data}:/ws/data:cached
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /etc/localtime:/etc/localtime:ro
+    shm_size: 1gb
+    tty: true
+    stdin_open: true
+    command: bash

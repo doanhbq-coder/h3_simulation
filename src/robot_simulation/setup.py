@@ -31,6 +31,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'mover = robot_simulation.mover:main',
         ],
     },
 )

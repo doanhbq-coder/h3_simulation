@@ -157,11 +157,11 @@ controller_server:
       vx_std: 0.2 # Độ lệch chuẩn cho tốc độ tuyến tính theo trục x, giúp robot đánh giá nhiều đường cong tiềm năng hơn, cải thiện khả năng lập kế hoạch và tránh chướng ngại vật của robot, đặc biệt là trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
       vy_std: 0.0
       wz_std: 0.6 
-      vx_max: 0.5
-      vx_min: -0.2
+      vx_max: 1.0
+      vx_min: -1.0
       vy_max: 0.0 
       wz_max: 1.0 
-      ax_min: -1.0   # Gia tốc tuyến tính tối thiểu (m/s²) - cho phép lùi
+      ax_min: -2.0   # Gia tốc tuyến tính tối thiểu (m/s²) - cho phép lùi
       az_max: 2.0    # Gia tốc góc tối đa (rad/s²)
       az_min: -2.0   # Gia tốc góc tối thiểu (rad/s²)
       motion_model: "DiffDrive"
