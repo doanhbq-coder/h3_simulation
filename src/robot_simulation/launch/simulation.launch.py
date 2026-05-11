@@ -20,7 +20,7 @@ def generate_launch_description():
     world_file= os.path.join(
         get_package_share_directory(package_name),
         'world',
-        'lobby_v3.world'  # Tên file world
+        'lobby_v5.world'  # Tên file world
     )
 
     rsp = IncludeLaunchDescription(
