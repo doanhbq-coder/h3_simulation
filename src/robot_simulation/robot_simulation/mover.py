@@ -33,7 +33,7 @@ class Mover(Node):
         msg10 = Twist()
         # Đổi hướng mỗi 5 giây
         if int(self.t) % 14 < 7:
-            msg1.linear.x = -0.4
+            msg1.linear.x = -0.6
             msg2.linear.x = 0.6
             msg3.linear.x = -0.6
             msg4.linear.x = 0.6

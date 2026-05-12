@@ -146,38 +146,27 @@ controller_server:
       # simulate_ahead_time: 1.0
       # rotate_to_goal_heading: false
       plugin: "nav2_mppi_controller::MPPIController"
-      time_steps: 40 # số bước thời gian cho mô hình dự đoán, horizon(tầm nhìn tương lai)= time_steps*model_dt
-      model_dt: 0.05 # bước thời gian của mô hình dự đoán =1/controller_frequency
-      batch_size: 5000 # số lượng mẫu đường đi tiềm năng được đánh giá trong mỗi lần lập kế hoạch
+      time_steps: 30 # Tăng time_steps để robot có thể đánh giá các đường đi tiềm năng trong một khoảng thời gian dài hơn, giúp cải thiện khả năng lập kế hoạch và tránh chướng ngại vật của robot, đặc biệt là trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
+      model_dt: 0.05
+      batch_size: 2000
       iteration_count: 1
-      temperature: 0.3 
+      temperature: 0.3 # Tăng temperature để robot có thể đánh giá nhiều đường cong tiềm năng hơn, giúp cải thiện khả năng lập kế hoạch và tránh chướng ngại vật của robot, đặc biệt là trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
       gamma: 0.015
       prune_distance: 1.7 
       transform_tolerance: 0.2 
-      vx_std: 0.8 # Độ lệch chuẩn cho tốc độ tuyến tính theo trục x, giúp robot đánh giá nhiều đường cong tiềm năng hơn, cải thiện khả năng lập kế hoạch và tránh chướng ngại vật của robot, đặc biệt là trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
+      vx_std: 0.2 # Độ lệch chuẩn cho tốc độ tuyến tính theo trục x, giúp robot đánh giá nhiều đường cong tiềm năng hơn, cải thiện khả năng lập kế hoạch và tránh chướng ngại vật của robot, đặc biệt là trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
       vy_std: 0.0
-      wz_std: 0.8 
-      vx_max: 1.2
-      vx_min: -1.2
+      wz_std: 0.6 
+      vx_max: 1.0
+      vx_min: -1.0
       vy_max: 0.0 
-      wz_max: 4.0 
-      ax_min: -6.0   # Gia tốc tuyến tính tối thiểu (m/s²) - cho phép lùi
-      az_max: 6.0    # Gia tốc góc tối đa (rad/s²)
-      az_min: -6.0   # Gia tốc góc tối thiểu (rad/s²)
+      wz_max: 1.0 
+      ax_min: -2.0   # Gia tốc tuyến tính tối thiểu (m/s²) - cho phép lùi
+      az_max: 2.0    # Gia tốc góc tối đa (rad/s²)
+      az_min: -2.0   # Gia tốc góc tối thiểu (rad/s²)
       motion_model: "DiffDrive"
       visualize: false
-      critics: ["ObstaclesCritic","ConstraintCritic", "CostCritic", "GoalCritic", "GoalAngleCritic", "PathAlignCritic", "PathFollowCritic", "PathAngleCritic", "PreferForwardCritic"]
-      ObstaclesCritic:
-        enabled: true
-        cost_power: 1 # Số mũ của hàm chi phí.Nếu tăng lên 2 hoặc 3: Chi phí sẽ tăng vọt (theo đường cong) khi lại gần. Điều này giúp robot chạy thoải mái ở xa nhưng "phanh cực gắt" khi đến gần.
-        repulsion_weight: 1.5 # Đây là lực đẩy. Nó tạo ra một vùng chi phí giảm dần xung quanh vật cản. Trọng số này càng cao, robot càng có xu hướng giữ khoảng cách xa vật cản.
-        critical_weight: 20.0 # trọng số này sẽ áp đặt một mức phạt rất nặng để ép robot phải phanh gấp hoặc bẻ lái ngay lập tức
-        consider_footprint: false
-        collision_cost: 10000.0 # Với con số 10,000, MPPI sẽ gần như loại bỏ hoàn toàn các quỹ đạo đó khỏi lựa chọn.
-        collision_margin_distance: 0.1 # bất kỳ điểm nào nằm trong khoảng này sẽ được oi là va chạm
-        near_goal_distance: 0.5 # Khi robot ở gần mục tiêu, nó có thể chấp nhận rủi ro hơn để đạt được mục tiêu nhanh hơn. Khoảng cách này xác định khi nào điều đó xảy ra.
-        inflation_radius: 0.55 # (only in Humble)
-        cost_scaling_factor: 10.0 # (only in Humble)   
+      critics: ["ConstraintCritic", "CostCritic", "GoalCritic", "GoalAngleCritic", "PathAlignCritic", "PathFollowCritic", "PathAngleCritic", "PreferForwardCritic"]
       ConstraintCritic:
         enabled: true
         cost_power: 1
@@ -215,28 +204,28 @@ controller_server:
 local_costmap:
   local_costmap:
     ros__parameters:
-      update_frequency: 30.0
-      publish_frequency: 10.0
+      update_frequency: 5.0
+      publish_frequency: 2.0
       global_frame: odom
       robot_base_frame: base_link
       use_sim_time: true
       rolling_window: true
-      width: 20
-      height: 20
+      width: 7
+      height: 7
       resolution: 0.05
       footprint: "[ [-0.42, -0.3], [-0.42, 0.3], [0.42, 0.3], [0.42, -0.3] ]"
       # robot_radius: 0.8
       plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 4.0  # Tăng cost_scaling_factor để robot tránh xa chướng ngại vật hơn
+        cost_scaling_factor: 2.0  # Tăng cost_scaling_factor để robot tránh xa chướng ngại vật hơn
         inflation_radius: 0.5  # Tăng inflation_radius để vùng phình to hơn
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
         observation_sources: scan
         scan:
-          topic: /scan_top
+          topic: /scan_filtered
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -252,14 +241,14 @@ local_costmap:
         mark_threshold: 0
         observation_sources: scan
         scan:
-          topic: /scan_top
+          topic: /scan_filtered
           max_obstacle_height: 2.0
           clearing: True
           marking: True
           data_type: "LaserScan"
-          raytrace_max_range: 5.0 # tầm xa xóa vết tích chướng ngại vật
+          raytrace_max_range: 3.0
           raytrace_min_range: 0.0
-          obstacle_max_range: 4.0 # tầm xa đánh dâu chướng ngại vật
+          obstacle_max_range: 2.5
           obstacle_min_range: 0.0
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
@@ -285,7 +274,7 @@ global_costmap:
         max_obstacle_height: 2.0
         combination_method: 1
         scan:
-          topic: /scan_top
+          topic: /scan_filtered
           obstacle_max_range: 2.5
           obstacle_min_range: 0.0
           raytrace_max_range: 3.0

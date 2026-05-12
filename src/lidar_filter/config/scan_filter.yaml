@@ -10,5 +10,5 @@ scan_filterer:
       name: range_filter
       type: laser_filters/LaserScanRangeFilter
       params:
-        lower_threshold: 1.0
+        lower_threshold: 0.26
         upper_threshold: 12.0

@@ -6,4 +6,5 @@
     <xacro:include filename="lidar_rear.xacro" /> -->
     <xacro:include filename="lidar_top.xacro" />
     <xacro:include filename="camera.xacro" />
+    <!-- <xacro:include filename="connector.xacro" /> -->
 </robot>

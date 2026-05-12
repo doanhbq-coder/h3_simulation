@@ -22,22 +22,23 @@
       <pose>-2 0 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
-          <pose>0 0 0 0 -0 0</pose>
+          <mass>15</mass>
+          <pose>0 0 -0.3 0 -0 0</pose>
           <inertia>
-            <ixx>1</ixx>
+            <ixx>1.4</ixx>
             <ixy>0</ixy>
             <ixz>0</ixz>
-            <iyy>1</iyy>
+            <iyy>1.4</iyy>
             <iyz>0</iyz>
-            <izz>1</izz>
+            <izz>0.3</izz>
           </inertia>
         </inertial>
         <collision name='collision'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -55,9 +56,10 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
         </visual>
         <self_collide>0</self_collide>
@@ -74,22 +76,23 @@
       <pose>2 0 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
-          <pose>0 0 0 0 -0 0</pose>
+          <mass>15</mass>
+          <pose>0 0 -0.3 0 -0 0</pose>
           <inertia>
-            <ixx>1</ixx>
+            <ixx>1.4</ixx>
             <ixy>0</ixy>
             <ixz>0</ixz>
-            <iyy>1</iyy>
+            <iyy>1.4</iyy>
             <iyz>0</iyz>
-            <izz>1</izz>
+            <izz>0.3</izz>
           </inertia>
         </inertial>
         <collision name='collision'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -107,9 +110,10 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
         </visual>
         <self_collide>0</self_collide>
@@ -126,22 +130,23 @@
       <pose>-2 0 0.3 0 -0 0</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
-          <pose>0 0 0 0 -0 0</pose>
+          <mass>15</mass>
+          <pose>0 0 -0.3 0 -0 0</pose>
           <inertia>
-            <ixx>1</ixx>
+            <ixx>1.4</ixx>
             <ixy>0</ixy>
             <ixz>0</ixz>
-            <iyy>1</iyy>
+            <iyy>1.4</iyy>
             <iyz>0</iyz>
-            <izz>1</izz>
+            <izz>0.3</izz>
           </inertia>
         </inertial>
         <collision name='collision'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -159,9 +164,10 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
         </visual>
         <self_collide>0</self_collide>
@@ -178,22 +184,23 @@
       <pose>2 0 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
-          <pose>0 0 0 0 -0 0</pose>
+          <mass>15</mass>
+          <pose>0 0 -0.3 0 -0 0</pose>
           <inertia>
-            <ixx>1</ixx>
+            <ixx>1.4</ixx>
             <ixy>0</ixy>
             <ixz>0</ixz>
-            <iyy>1</iyy>
+            <iyy>1.4</iyy>
             <iyz>0</iyz>
-            <izz>1</izz>
+            <izz>0.3</izz>
           </inertia>
         </inertial>
         <collision name='collision'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -211,9 +218,10 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
         </visual>
         <self_collide>0</self_collide>
@@ -230,22 +238,23 @@
       <pose>2 0 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
-          <pose>0 0 0 0 -0 0</pose>
+          <mass>15</mass>
+          <pose>0 0 -0.3 0 -0 0</pose>
           <inertia>
-            <ixx>1</ixx>
+            <ixx>1.4</ixx>
             <ixy>0</ixy>
             <ixz>0</ixz>
-            <iyy>1</iyy>
+            <iyy>1.4</iyy>
             <iyz>0</iyz>
-            <izz>1</izz>
+            <izz>0.3</izz>
           </inertia>
         </inertial>
         <collision name='collision'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -263,9 +272,10 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
         </visual>
         <self_collide>0</self_collide>
@@ -282,22 +292,23 @@
       <pose>2 0 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
-          <pose>0 0 0 0 -0 0</pose>
+          <mass>15</mass>
+          <pose>0 0 -0.3 0 -0 0</pose>
           <inertia>
-            <ixx>1</ixx>
+            <ixx>1.4</ixx>
             <ixy>0</ixy>
             <ixz>0</ixz>
-            <iyy>1</iyy>
+            <iyy>1.4</iyy>
             <iyz>0</iyz>
-            <izz>1</izz>
+            <izz>0.3</izz>
           </inertia>
         </inertial>
         <collision name='collision'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -315,9 +326,10 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
         </visual>
         <self_collide>0</self_collide>
@@ -334,22 +346,23 @@
       <pose>2 0 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
-          <pose>0 0 0 0 -0 0</pose>
+          <mass>15</mass>
+          <pose>0 0 -0.3 0 -0 0</pose>
           <inertia>
-            <ixx>1</ixx>
+            <ixx>1.4</ixx>
             <ixy>0</ixy>
             <ixz>0</ixz>
-            <iyy>1</iyy>
+            <iyy>1.4</iyy>
             <iyz>0</iyz>
-            <izz>1</izz>
+            <izz>0.3</izz>
           </inertia>
         </inertial>
         <collision name='collision'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -367,9 +380,10 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
         </visual>
         <self_collide>0</self_collide>
@@ -386,22 +400,23 @@
       <pose>2 0 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
-          <pose>0 0 0 0 -0 0</pose>
+          <mass>15</mass>
+          <pose>0 0 -0.3 0 -0 0</pose>
           <inertia>
-            <ixx>1</ixx>
+            <ixx>1.4</ixx>
             <ixy>0</ixy>
             <ixz>0</ixz>
-            <iyy>1</iyy>
+            <iyy>1.4</iyy>
             <iyz>0</iyz>
-            <izz>1</izz>
+            <izz>0.3</izz>
           </inertia>
         </inertial>
         <collision name='collision'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -419,9 +434,10 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
         </visual>
         <self_collide>0</self_collide>
@@ -438,22 +454,23 @@
       <pose>2 0 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
-          <pose>0 0 0 0 -0 0</pose>
+          <mass>15</mass>
+          <pose>0 0 -0.3 0 -0 0</pose>
           <inertia>
-            <ixx>1</ixx>
+            <ixx>1.4</ixx>
             <ixy>0</ixy>
             <ixz>0</ixz>
-            <iyy>1</iyy>
+            <iyy>1.4</iyy>
             <iyz>0</iyz>
-            <izz>1</izz>
+            <izz>0.3</izz>
           </inertia>
         </inertial>
         <collision name='collision'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -471,9 +488,10 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
         </visual>
         <self_collide>0</self_collide>
@@ -490,22 +508,23 @@
       <pose>2 0 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
-          <pose>0 0 0 0 -0 0</pose>
+          <mass>15</mass>
+          <pose>0 0 -0.3 0 -0 0</pose>
           <inertia>
-            <ixx>1</ixx>
+            <ixx>1.4</ixx>
             <ixy>0</ixy>
             <ixz>0</ixz>
-            <iyy>1</iyy>
+            <iyy>1.4</iyy>
             <iyz>0</iyz>
-            <izz>1</izz>
+            <izz>0.3</izz>
           </inertia>
         </inertial>
         <collision name='collision'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -523,9 +542,10 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <sphere>
+            <cylinder>
               <radius>0.3</radius>
-            </sphere>
+              <length>0.35</length>
+            </cylinder>
           </geometry>
         </visual>
         <self_collide>0</self_collide>

@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <!-- Connector 01 for cargo attachment -->
+    <joint name="connector_01_joint" type="fixed">
+        <parent link="cargo"/>
+        <child link="connector_01"/>
+        <origin xyz="0.19 0.14 0.065" rpy="0 0 0"/>
+    </joint>
+
+    <link name="connector_01">
+        <visual>
+            <geometry>
+                <cylinder radius="0.01" length="0.03"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.01" length="0.03"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0" length="0.03" radius="0.01">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="connector_01">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <!-- Connector 02 for cargo attachment -->
+    <joint name="connector_02_joint" type="fixed">
+        <parent link="cargo"/>
+        <child link="connector_02"/>
+        <origin xyz="0.19 -0.14 0.065" rpy="0 0 0"/>
+    </joint>
+
+    <link name="connector_02">
+        <visual>
+            <geometry>
+                <cylinder radius="0.01" length="0.03"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.01" length="0.03"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0" length="0.03" radius="0.01">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="connector_02">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <!-- Connector 03 for cargo attachment -->
+    <joint name="connector_03_joint" type="fixed">
+        <parent link="cargo"/>
+        <child link="connector_03"/>
+        <origin xyz="-0.19 0.14 0.065" rpy="0 0 0"/>
+    </joint>
+
+    <link name="connector_03">
+        <visual>
+            <geometry>
+                <cylinder radius="0.01" length="0.03"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.01" length="0.03"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0" length="0.03" radius="0.01">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="connector_03">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+
+    <!-- Connector 04 for cargo attachment -->
+    <joint name="connector_04_joint" type="fixed">
+        <parent link="cargo"/>
+        <child link="connector_04"/>
+        <origin xyz="-0.19 -0.14 0.065" rpy="0 0 0"/>
+    </joint>
+
+    <link name="connector_04">
+        <visual>
+            <geometry>
+                <cylinder radius="0.01" length="0.03"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.01" length="0.03"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0" length="0.03" radius="0.01">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="connector_04">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+</robot>
