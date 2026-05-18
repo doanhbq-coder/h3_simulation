@@ -1,0 +1,53 @@
+collision_monitor:
+  ros__parameters:
+    use_sim_time: True
+    base_frame_id: "base_link" # Frame gốc của robot
+    odom_frame_id: "odom"           # Frame odom để tính toán quán tính
+    cmd_vel_in_topic: "cmd_vel_smoothed" # Nhận lệnh đã làm mượt từ Smoother
+    cmd_vel_out_topic: "cmd_vel"    # Xuất lệnh cuối cùng xuống Driver
+    state_topic: "collision_monitor_state"
+    transform_tolerance: 0.2
+    source_timeout: 1.0
+    stop_pub_timeout: 2.0
+
+    # 1. Định nghĩa nguồn dữ liệu cảm biến
+    observation_sources: ["scan"]
+    scan:
+      type: "scan"
+      topic: "/scan_top"
+      # Chỉ quan tâm vật cản trong khoảng này để tránh nhiễu xa
+      min_height: 0.0
+      max_height: 2.0
+
+    # 2. Định nghĩa các vùng giám sát (Thứ tự ưu tiên từ trái sang phải)
+    # Stop ưu tiên cao nhất, sau đó đến Slowdown
+    polygons: ["DeathZone", "SlowdownZone", "ApproachZone"]
+
+    # VÙNG DỪNG KHẨN CẤP (Stop): Cách thân robot khoảng 10-15cm
+    DeathZone:
+      type: "polygon"
+      # Hình chữ nhật bao quanh robot (giả sử robot 0.5m x 0.4m)
+      points: [0.35, 0.25, 0.35, -0.25, -0.35, -0.25, -0.35, 0.25]
+      action_type: "stop"
+      max_points: 3      # Cần ít nhất 3 điểm lọt vào để kích hoạt phanh
+      visualize: True    # Hiển thị trên RViz để kiểm tra
+
+    # VÙNG GIẢM TỐC (Slowdown): Khi vật cản ở gần (khoảng 0.6m - 1.0m)
+    SlowdownZone:
+      type: "polygon"
+      points: [0.8, 0.5, 0.8, -0.5, -0.5, -0.5, -0.5, 0.5]
+      action_type: "slowdown"
+      slowdown_ratio: 0.4 # Giảm 60% tốc độ (chỉ còn lại 40%)
+      max_points: 3
+      visualize: True
+
+    # VÙNG TIẾP CẬN (Approach): Tính theo thời gian va chạm (TTC)
+    # Rất hiệu quả với vật cản động 0.6m/s lao tới
+    ApproachZone:
+      type: "circle"     # Dùng hình tròn để quét xung quanh
+      radius: 1.5        # Bán kính quét 1.5m
+      action_type: "approach"
+      time_before_collision: 1.5 # Phanh nếu dự đoán va chạm trong 1.5 giây
+      simulation_time_step: 0.05
+      max_points: 5
+      visualize: True

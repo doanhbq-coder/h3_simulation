@@ -146,14 +146,14 @@ controller_server:
       # simulate_ahead_time: 1.0
       # rotate_to_goal_heading: false
       plugin: "nav2_mppi_controller::MPPIController"
-      time_steps: 40 # số bước thời gian cho mô hình dự đoán, horizon(tầm nhìn tương lai)= time_steps*model_dt
+      time_steps: 35 # số bước thời gian cho mô hình dự đoán, horizon(tầm nhìn tương lai)= time_steps*model_dt
       model_dt: 0.05 # bước thời gian của mô hình dự đoán =1/controller_frequency
       batch_size: 5000 # số lượng mẫu đường đi tiềm năng được đánh giá trong mỗi lần lập kế hoạch
-      iteration_count: 1
-      temperature: 0.3 
-      gamma: 0.015
-      prune_distance: 1.7 
-      transform_tolerance: 0.2 
+      iteration_count: 1 # số lần lặp lại quá trình lập kế hoạch MPPI trong mỗi chu kỳ điều khiển, thường được đặt thành 1 để cân bằng giữa hiệu suất và khả năng phản hồi của robot.
+      temperature: 0.3 # tham số điều chỉnh độ ngẫu nhiên của quá trình lập kế hoạch MPPI
+      gamma: 0.015 # hệ số giảm giá trong MPPI, ảnh hưởng đến cách robot đánh giá chi phí của các đường đi tiềm năng trong tương lai, giúp robot ưu tiên các hành động ngắn hạn hơn hoặc dài hạn hơn tùy thuộc vào giá trị được đặt.
+      prune_distance: 1.7 # khoảng cách mà MPPI sẽ cắt bỏ các đường đi tiềm năng không còn phù hợp với vị trí hiện tại của robot, giúp cải thiện hiệu suất lập kế hoạch bằng cách tập trung vào các đường đi có khả năng thực hiện được hơn.
+      transform_tolerance: 0.2 # thời gian tối đa (tính bằng giây) mà MPPI sẽ chờ đợi để nhận được các phép biến đổi cần thiết giữa các khung tham chiếu, giúp đảm bảo rằng robot có thông tin chính xác về vị trí và hướng của nó khi lập kế hoạch đường đi.
       vx_std: 0.8 # Độ lệch chuẩn cho tốc độ tuyến tính theo trục x, giúp robot đánh giá nhiều đường cong tiềm năng hơn, cải thiện khả năng lập kế hoạch và tránh chướng ngại vật của robot, đặc biệt là trong môi trường có nhiều chướng ngại vật hoặc khi robot có kích thước lớn.
       vy_std: 0.0
       wz_std: 0.8 
@@ -221,16 +221,16 @@ local_costmap:
       robot_base_frame: base_link
       use_sim_time: true
       rolling_window: true
-      width: 20
-      height: 20
+      width: 5
+      height: 5
       resolution: 0.05
-      footprint: "[ [-0.42, -0.3], [-0.42, 0.3], [0.42, 0.3], [0.42, -0.3] ]"
+      footprint: "[ [-0.2, -0.15], [-0.2, 0.15], [0.2, 0.15], [0.2, -0.15] ]"
       # robot_radius: 0.8
       plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 4.0  # Tăng cost_scaling_factor để robot tránh xa chướng ngại vật hơn
-        inflation_radius: 0.5  # Tăng inflation_radius để vùng phình to hơn
+        cost_scaling_factor: 5.0  # Tăng cost_scaling_factor để robot tránh xa chướng ngại vật hơn
+        inflation_radius: 0.4  # Tăng inflation_radius để vùng phình to hơn
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
@@ -331,7 +331,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: true
-        inflation_radius: 0.55
+        inflation_radius: 0.3
         cost_scaling_factor: 2.0
         inflate_unknown: false
         inflate_around_unknown: true
@@ -421,10 +421,10 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
-    max_velocity: [0.26, 0.0, 1.0]
-    min_velocity: [-0.26, 0.0, -1.0]
-    max_accel: [2.5, 0.0, 3.2]
-    max_decel: [-2.5, 0.0, -3.2]
+    max_velocity: [1.0, 0.0, 2.0] # vx, vy, wz
+    min_velocity: [-1.0, 0.0, -2.0] # vx, vy, wz
+    max_accel: [4.0, 0.0, 4.0] # ax, ay, az
+    max_decel: [-4.0, 0.0, -4.0] # ax, ay, az
     odom_topic: "odom"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]

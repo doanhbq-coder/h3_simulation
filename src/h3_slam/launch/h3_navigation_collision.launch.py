@@ -34,7 +34,7 @@ def generate_launch_description():
         name='controller_server',
         output='screen',
         parameters=[params_file],
-        # remappings=[('/cmd_vel', '/neo_robotics/K1_demo/V0_0_0/cmd_vel')]
+        remappings=[('/cmd_vel', '/cmd_vel_raw')]
     )
 
     # SMOOTHER SERVER (bắt buộc)
@@ -43,7 +43,7 @@ def generate_launch_description():
         executable='smoother_server',
         name='smoother_server',
         output='screen',
-        parameters=[params_file]
+        parameters=[params_file],
     )
 
     # BEHAVIOR TREE NAVIGATOR
@@ -71,7 +71,16 @@ def generate_launch_description():
         name='velocity_smoother',
         output='screen',
         parameters=[params_file],
-        # remappings=[('/cmd_vel', '/cmd_vel_raw')]
+        remappings=[('/cmd_vel', '/cmd_vel_raw')]
+    )
+
+    # COLLISION MONITOR
+    collision_monitor = Node(
+        package='nav2_collision_monitor',
+        executable='collision_monitor',
+        name='collision_monitor',
+        output='screen',
+        parameters=[os.path.join(package_dir, 'config', 'h3_collision_monitor_params_v2.yaml')]
     )
 
     # LIFECYCLE MANAGER
@@ -89,7 +98,8 @@ def generate_launch_description():
                 'smoother_server',
                 'bt_navigator',
                 'behavior_server',
-                'velocity_smoother'
+                'velocity_smoother',
+                'collision_monitor'
             ]
         }]
     )
@@ -108,6 +118,7 @@ def generate_launch_description():
         bt_navigator,
         behavior_server,
         velocity_smoother,
+        collision_monitor,
         delayed_lifecycle_manager_nav,
         # rviz_node,
         # cmd_vel_relay,

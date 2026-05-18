@@ -33,27 +33,27 @@ class Mover(Node):
         msg10 = Twist()
         # Đổi hướng mỗi 5 giây
         if int(self.t) % 14 < 7:
-            msg1.linear.x = -0.6
-            msg2.linear.x = 0.6
-            msg3.linear.x = -0.6
-            msg4.linear.x = 0.6
-            msg5.linear.x = -0.6
-            msg6.linear.x = 0.6
-            msg7.linear.x = -0.6
-            msg8.linear.x = 0.6
-            msg9.linear.x = -0.6
-            msg10.linear.x = 0.6
+            msg1.linear.x = -0.4
+            msg2.linear.x = 0.4
+            msg3.linear.x = -0.4
+            msg4.linear.x = 0.4
+            msg5.linear.x = -0.4
+            msg6.linear.x = 0.4
+            msg7.linear.x = -0.4
+            msg8.linear.x = 0.4
+            msg9.linear.x = -0.4
+            msg10.linear.x = 0.4
         else:
-            msg1.linear.x = 0.6
-            msg2.linear.x = -0.6
-            msg3.linear.x = 0.6
-            msg4.linear.x = -0.6
-            msg5.linear.x = 0.6
-            msg6.linear.x = -0.6
-            msg7.linear.x = 0.6
-            msg8.linear.x = -0.6
-            msg9.linear.x = 0.6
-            msg10.linear.x = -0.6
+            msg1.linear.x = 0.4
+            msg2.linear.x = -0.4
+            msg3.linear.x = 0.4
+            msg4.linear.x = -0.4
+            msg5.linear.x = 0.4
+            msg6.linear.x = -0.4
+            msg7.linear.x = 0.4
+            msg8.linear.x = -0.4
+            msg9.linear.x = 0.4
+            msg10.linear.x = -0.4
 
         self.pub1.publish(msg1)
         self.pub2.publish(msg2)
