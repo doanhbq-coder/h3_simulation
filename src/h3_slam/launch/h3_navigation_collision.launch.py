@@ -15,7 +15,7 @@ def generate_launch_description():
     )
 
     package_dir = get_package_share_directory('h3_slam')
-    params_file = os.path.join(package_dir, 'config', 'h3_nav2_params_v3_mppi.yaml')
+    params_file = os.path.join(package_dir, 'config', 'h3_nav2_params_v3_mppi_virtual_layer.yaml')
     rviz_config = os.path.join(package_dir, 'rviz', 'nav2_default_view.rviz')
 
     # PLANNER
@@ -104,12 +104,6 @@ def generate_launch_description():
         }]
     )
 
-    # Delay starting navigation lifecycle manager until localization components are active
-    delayed_lifecycle_manager_nav = TimerAction(
-        period=2.0,
-        actions=[lifecycle_manager_nav]
-    )
-
     return LaunchDescription([
         use_sim_time_arg,
         planner_server,
@@ -119,7 +113,7 @@ def generate_launch_description():
         behavior_server,
         velocity_smoother,
         collision_monitor,
-        delayed_lifecycle_manager_nav,
+        lifecycle_manager_nav,
         # rviz_node,
         # cmd_vel_relay,
     ])

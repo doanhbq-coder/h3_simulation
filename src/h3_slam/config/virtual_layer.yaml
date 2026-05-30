@@ -1,0 +1,46 @@
+# config/virtual_layer_forms.yaml
+forms:
+  # ========================================
+  # CIRCLES
+  # ========================================
+  # Format: CIRCLE(x y radius) [COST:value] [DURATION:seconds] [ID:number]
+  
+  # Permanent lethal circular obstacle
+  # - CIRCLE(5 -2 1.5) [COST:254] [ID:1]
+  
+  # Temporary circular zone (expires after 30 seconds)
+  # - CIRCLE(2 3 1.0) [COST:200] [DURATION:30] [ID:2]
+
+  # ========================================
+  # LINES
+  # ========================================
+  # Format: LINESTRING(x1 y1, x2 y2) [COST:value] [THICKNESS:value] [DURATION:seconds] [ID:number]
+  
+  # Permanent line barrier
+  - LINESTRING(0 0, 10 0) [COST:254] [THICKNESS:0.4] [ID:10]
+  
+  # Temporary thin line (expires after 60 seconds)
+  - LINESTRING(-5 5, 5 5) [COST:200] [THICKNESS:0.2] [DURATION:60] [ID:11]
+
+  # ========================================
+  # FILLED POLYGONS
+  # ========================================
+  # Format: POLYGON((), x1 y1, x2 y2, ...) [COST:value] [DURATION:seconds] [ID:number]
+  
+  # Permanent filled rectangle
+  - POLYGON((), 0 0, 4 0, 4 3, 0 3) [COST:254] [ID:20]
+  
+  
+  # Temporary filled triangle (expires after 45 seconds)
+  - POLYGON((), -2 -2, 0 2, 2 -2) [COST:128] [DURATION:45] [ID:21]
+
+  # ========================================
+  # OPEN POLYGONS (Polylines)
+  # ========================================
+  # Format: POLYGON(x1 y1, x2 y2, ...) [COST:value] [DURATION:seconds] [ID:number]
+  
+  # Permanent open polygon boundary
+  # - POLYGON(6 0, 8 0, 8 4, 6 4) [COST:200] [ID:30]
+  
+  # Temporary polyline path (expires after 20 seconds)
+  # - POLYGON(-3 -3, -1 -1, 1 -3, 3 -1) [COST:150] [DURATION:20] [ID:31]
