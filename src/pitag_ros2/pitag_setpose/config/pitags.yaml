@@ -1,0 +1,75 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# pitag_setpose  –  vị trí các PiTag gắn trên trần nhà (trong map frame)
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# HƯỚNG DẪN ĐO VỊ TRÍ TAG:
+#   1. Mở map (PGM/YAML) trong RViz, dùng tool "Publish Point" để lấy toạ độ
+#      x, y của điểm ngay phía dưới tag trên sàn.
+#   2. Đo chiều cao từ sàn lên bề mặt tag → đặt vào trường z.
+#   3. roll/pitch/yaw (degrees): hướng mặt tag trong map frame.
+#      Tag nằm ngang trên trần, mặt hướng xuống dưới (về phía camera):
+#        roll=180  pitch=0  yaw=0    → trục Y của tag song song trục Y của map
+#        roll=180  pitch=0  yaw=90   → tag xoay 90° ngược chiều kim đồng hồ
+#      Nếu không chắc, cứ để 0 rồi quan sát kết quả và điều chỉnh yaw.
+#
+# HIỆU CHỈNH:
+#   - Đặt robot ở vị trí đã biết trước, cho camera nhìn tag, xem pose
+#     được publish trong /initialpose qua `ros2 topic echo /initialpose`.
+#   - So sánh với vị trí thực, điều chỉnh x/y/yaw của tag cho khớp.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Frame names (phải khớp với cấu hình nav2 và URDF)
+map_frame: "map"
+base_frame: "base_link"
+
+# Debounce: chỉ publish /initialpose sau ít nhất N giây kể từ lần cuối
+debounce_seconds: 2.0
+
+# min_score: ngưỡng reprojection error (pixels) – 0 = chấp nhận tất cả
+# Tăng lên (ví dụ 5.0) nếu muốn bỏ qua các detection kém chính xác.
+min_score: 0.0
+
+# Covariance cho AMCL initial pose [36 phần tử, ma trận 6×6 row-major]
+# Thứ tự: x, y, z, roll, pitch, yaw
+# Giá trị mặc định: std-dev 0.5m theo x/y, ~15° theo yaw
+covariance: [
+  0.25, 0.0,  0.0, 0.0, 0.0, 0.0,
+  0.0,  0.25, 0.0, 0.0, 0.0, 0.0,
+  0.0,  0.0,  0.0, 0.0, 0.0, 0.0,
+  0.0,  0.0,  0.0, 0.0, 0.0, 0.0,
+  0.0,  0.0,  0.0, 0.0, 0.0, 0.0,
+  0.0,  0.0,  0.0, 0.0, 0.0, 0.0685
+]
+
+# ─── Danh sách PiTag ──────────────────────────────────────────────────────────
+# id:    integer ID của PiTag (khớp với model XML, ví dụ piTagIni_0.xml = ID 0-3)
+# x, y:  vị trí tag trên bản đồ (meters)
+# z:     chiều cao tag so với sàn (meters) — thường = chiều cao trần
+# roll, pitch, yaw: hướng tag trong map frame (degrees)
+#   Tag nằm phẳng trên trần, mặt hướng xuống → roll=180, pitch=0, yaw=?
+# ─────────────────────────────────────────────────────────────────────────────
+tags:
+  - id: 0
+    x: 1.5      # ← THAY BẰNG VỊ TRÍ THỰC ĐO ĐƯỢC TRÊN BẢN ĐỒ
+    y: 0.0
+    z: 2.8      # chiều cao trần
+    roll: 180.0
+    pitch: 0.0
+    yaw: 0.0    # xoay tag trên trần (điều chỉnh nếu tag không song song map)
+
+  - id: 1
+    x: 3.0
+    y: 1.5
+    z: 2.8
+    roll: 180.0
+    pitch: 0.0
+    yaw: 0.0
+
+  # Thêm tag tại đây nếu cần:
+  # - id: 2
+  #   x: ...
+  #   y: ...
+  #   z: 2.8
+  #   roll: 180.0
+  #   pitch: 0.0
+  #   yaw: 0.0
