@@ -12,7 +12,7 @@ def generate_launch_description():
         'use_sim_time', default_value='true', description='Use simulation time'
     )
     host_arg = DeclareLaunchArgument(
-        'host', default_value='0.0.0.0', description='API server bind address'
+        'host', default_value='10.70.22.44', description='API server bind address'
     )
     port_arg = DeclareLaunchArgument(
         'port', default_value='8090', description='API server port'
