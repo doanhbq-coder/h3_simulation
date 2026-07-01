@@ -1,0 +1,31 @@
+map_drift_likelihood_node:
+  ros__parameters:
+    scan_topic: "/scan_top"
+    map_topic: "/map"
+    map_frame: "map"
+    robot_frame: "base_link"
+
+    # --- Likelihood Field ---
+    # Gaussian σ: vùng "gần tường" vẫn được tính là match tốt
+    # Tăng σ → khoan dung hơn (ít false alert), nhưng kém nhạy với lệch nhỏ
+    # Giảm σ → chặt hơn, nhạy hơn
+    sigma: 0.30                  # mét — khuyến nghị 0.10-0.30m
+
+    # Điểm ngoài map hoặc xa tường hơn giá trị này → score ≈ 0
+    max_obstacle_distance: 2.0   # mét
+
+    # --- Calibration ---
+    calibration_samples: 10
+
+    # --- Ngưỡng adaptive ---
+    drift_increase_warn: 0.15
+    drift_increase_alert: 0.22
+
+    # --- Ngưỡng tuyệt đối fallback ---
+    drift_warn_threshold: 0.40
+    drift_alert_threshold: 0.55
+
+    consecutive_alerts_required: 3
+    check_rate: 2.0
+    min_scan_points: 50
+    occupancy_threshold: 50

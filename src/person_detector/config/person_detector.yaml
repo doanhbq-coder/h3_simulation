@@ -1,0 +1,43 @@
+person_detector_node:
+  ros__parameters:
+    # LiDAR topic (use /scan_filtered if laser_filters is running)
+    scan_topic: "/neo_robotics/K1_demo/V0_0_0/scan_front"
+
+    # Phát hiện người trong vòng bán kính này (mét)
+    detection_range: 1.0
+
+    # Kích thước cluster chân người ở độ cao 25cm
+    # Chân người: đường kính 8-20cm → width 0.08-0.20m
+    # Dùng margin rộng hơn để bắt nhiều tư thế
+    leg_min_width: 0.1   # 5cm  - chân gày nhất
+    leg_max_width: 0.25   # 25cm - chân + giày rộng nhất
+
+    # Số điểm scan tối thiểu/tối đa cho một cluster chân
+    # Quá ít → nhiễu; quá nhiều → đồ vật to (tường, bàn)
+    min_leg_points: 10
+    max_leg_points: 40
+
+    # Khoảng cách tối đa giữa 2 điểm liên tiếp để ghép vào cùng cluster
+    max_cluster_gap: 0.12  # 12cm
+
+    # Khoảng cách giữa 2 chân (stance width)
+    min_stance_width: 0.10  # 10cm - chân sát nhau
+    max_stance_width: 0.65  # 65cm - dáng đứng rộng
+
+    # Thời gian chờ giữa 2 lần chào (giây) - tránh chào liên tục
+    greeting_cooldown: 5.0
+
+    # Số frame liên tiếp phát hiện được để xác nhận có người
+    # (lọc nhiễu ngắn hạn)
+    consecutive_detections: 4
+
+    # Bật chế độ lọc đồ vật tĩnh (ghế, chân bàn)
+    # True = chỉ phát hiện vật thể CÓ di chuyển → chính xác hơn nhưng cần thêm thời gian
+    # False = phát hiện ngay lập tức
+    require_movement: false
+    movement_threshold: 0.05  # 5cm dịch chuyển tính là có di chuyển
+
+greeting_node:
+  ros__parameters:
+    greeting_text: "Xin chào! Tôi có thể giúp gì cho bạn?"
+    tts_topic: "/tts/text"

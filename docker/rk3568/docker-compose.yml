@@ -1,0 +1,43 @@
+services:
+  h3_robot:
+    build:
+      context: ../..
+      dockerfile: docker/rk3568/Dockerfile
+      args:
+        ROS_DISTRO: humble
+    image: h3_robot:rk3568
+    container_name: h3_robot
+    restart: unless-stopped
+    network_mode: host
+    privileged: true
+    environment:
+      - ROS_DOMAIN_ID=25
+      - ROS_LOCALHOST_ONLY=0
+      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+    volumes:
+      - ../../src:/ws/src:rw
+      - /dev:/dev
+      - /etc/localtime:/etc/localtime:ro
+      - /run/udev:/run/udev:ro
+      - h3_maps:/ws/maps
+      - h3_logs:/ws/logs
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+      - /dev/ttyS0:/dev/ttyS0
+      - /dev/video0:/dev/video0
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          memory: 3G
+    tty: true
+    stdin_open: true
+    command: bash
+
+volumes:
+  h3_maps:
+  h3_logs:

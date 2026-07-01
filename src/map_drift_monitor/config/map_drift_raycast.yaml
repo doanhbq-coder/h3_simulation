@@ -1,0 +1,35 @@
+map_drift_raycast_node:
+  ros__parameters:
+    scan_topic: "/scan_top"
+    map_topic: "/map"
+    map_frame: "map"
+    robot_frame: "base_link"
+
+    # --- Ray Casting ---
+    # Sai số cho phép giữa range thực tế và range kỳ vọng (mét)
+    # Nhỏ → nhạy hơn, nhiều false alert   Lớn → bỏ qua lệch nhỏ
+    range_tolerance: 0.20
+
+    # Khoảng cast tối đa (m) — giới hạn CPU, đủ cho indoor
+    max_cast_range: 10.0
+
+    # Lấy mẫu mỗi N tia — 1 = dùng toàn bộ tia
+    ray_skip: 1
+
+    # Số tia đánh giá được tối thiểu để tính drift
+    min_evaluable_rays: 30
+
+    # --- Calibration ---
+    calibration_samples: 10
+
+    # --- Ngưỡng adaptive ---
+    drift_increase_warn: 0.15
+    drift_increase_alert: 0.22
+
+    # --- Ngưỡng tuyệt đối fallback ---
+    drift_warn_threshold: 0.35
+    drift_alert_threshold: 0.50
+
+    consecutive_alerts_required: 3
+    check_rate: 2.0
+    occupancy_threshold: 50

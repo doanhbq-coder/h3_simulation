@@ -1,0 +1,29 @@
+map_drift_monitor_node:
+  ros__parameters:
+    scan_topic: "/neo_robotics/K1_demo/V0_0_0/scan_front"
+    map_topic: "/map"
+    map_frame: "map"
+    robot_frame: "base_footprint"
+
+    # --- Calibration ---
+    # Số scan samples đầu tiên để đo baseline drift tại vị trí khởi động đúng.
+    # Robot PHẢI đứng yên ở pose chính xác trong giai đoạn này.
+    calibration_samples: 10
+
+    # --- Ngưỡng tăng so với baseline (adaptive) ---
+    # Ví dụ: baseline=13.2% → warn khi >28.2%, alert khi >35.2%
+    drift_increase_warn: 0.15    # tăng 15% so với baseline → WARN
+    drift_increase_alert: 0.22   # tăng 22% so với baseline → ALERT + reset request
+
+    # --- Ngưỡng tuyệt đối (fallback khi drift quá lớn bất kể baseline) ---
+    drift_warn_threshold: 0.40
+    drift_alert_threshold: 0.55
+
+    # Cần bao nhiêu lần check liên tiếp vượt ngưỡng để xác nhận drift thật
+    # (tránh false positive từ nhiễu ngắn hạn)
+    consecutive_alerts_required: 3
+
+    check_rate: 2.0          # Hz
+    min_scan_points: 50
+    occupancy_threshold: 50  # OccupancyGrid cell value (0-100)
+    neighbor_check: true     # kiểm tra 3x3 neighbors để xử lý discretization noise

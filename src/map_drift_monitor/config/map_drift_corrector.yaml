@@ -1,0 +1,55 @@
+map_drift_corrector_node:
+  ros__parameters:
+    # --- I/O ---
+    scan_topic: "/scan_top"
+    map_topic: "/map"
+    map_frame: "map"
+    base_frame: "base_link"
+    odom_frame: "odom"
+    check_rate: 2.0
+
+    # --- Likelihood field ---
+    # sigma: độ rộng vùng "gần tường" tính là khớp tốt (m). Nhỏ → nhạy hơn.
+    sigma: 0.20
+    occupancy_threshold: 50
+    max_obstacle_distance: 2.0
+
+    # --- Lọc tia ổn định ---
+    # stable_gate: endpoint xa tường mapped hơn mức này (m) → loại (unknown/đổi)
+    stable_gate: 0.50
+    min_stable_rays: 40
+    ray_skip: 1
+
+    # --- Local pose search ---
+    search_xy: 0.50          # m, bán kính quét tịnh tiến quanh pose hiện tại
+    search_yaw: 0.175        # rad (~10°), bán kính quét xoay
+    coarse_step_xy: 0.10     # m, bước lưới thô
+    coarse_step_yaw: 0.0524  # rad (~3°)
+    fine_refine: true        # nội suy parabol sub-cell quanh đỉnh
+    # Số lần tái định tâm khi đỉnh ghim ở biên. Tầm đo ≈ max_search_iters*search_xy
+    # (vd 4*0.5 = 2.0m). Tăng nếu cần đo drift lớn hơn.
+    max_search_iters: 4
+
+    # --- Ngưỡng vật lý (mét / radian) ---
+    warn_drift_m: 0.15
+    alert_drift_m: 0.30
+    warn_drift_yaw: 0.087    # ~5°
+    alert_drift_yaw: 0.175   # ~10°
+    exit_drift_m: 0.10       # hysteresis: drift nhỏ hơn mức này mới thoát ALERT
+    min_confidence: 0.5      # confidence tối thiểu để tính WARN/ALERT
+
+    # --- Lọc thời gian (số chu kỳ liên tiếp) ---
+    warn_consecutive: 3
+    alert_consecutive: 5
+    exit_consecutive: 5
+
+    # --- Auto-correct ---
+    # auto_correct=true → tự publish /initialpose = pose + correction khi vào ALERT
+    auto_correct: false
+    auto_correct_min_confidence: 0.8
+
+    # --- Debug ---
+    publish_score_grid: false
+    # Publish laser giả định (xanh: pose khớp-nhất) + laser hiện tại (đỏ) trên RViz
+    publish_debug_markers: true
+    marker_point_size: 0.04
